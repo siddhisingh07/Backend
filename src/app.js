@@ -12,7 +12,7 @@ const app = express();
 app.use(express());
 app.use(
   cors({
-    origin: 'https://nest-mart-five.vercel.app/',
+    origin: 'https://nest-mart-five.vercel.app',
     credentials: true,
   })
 );
