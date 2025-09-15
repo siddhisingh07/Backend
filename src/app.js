@@ -12,7 +12,7 @@ const app = express();
 app.use(express());
 app.use(
   cors({
-    origin: 'http://localhost:5173',
+    origin: 'https://nest-mart-five.vercel.app/',
     credentials: true,
   })
 );
