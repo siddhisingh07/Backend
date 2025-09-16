@@ -2,12 +2,13 @@ import { ApiResponse } from '../utils/ApiResponse.js';
 import jwt from 'jsonwebtoken';
 import User from '../models/userModel.js';
 import { ErrorHandler } from '../utils/ErrorHandler.js';
+import { asyncHandler } from '../utils/asyncHandler.js';
 
-export const authenticate = async (req, res, next) => {
+export const authenticate = asyncHandler(async (req, res, next) => {
   const token = req.cookies?.token ;//|| req.headers.authorization.split(' ')[1]
   console.log(token);
   if (!token) {
-    throw new ErrorHandler(401, 'Unauthorized Access');
+    throw new ErrorHandler(400, 'Unauthorized Access');
   }
   let decoded = jwt.verify(token, process.env.SECRET_KEY);
   console.log(decoded);
@@ -17,4 +18,5 @@ export const authenticate = async (req, res, next) => {
   }
   req.user = user;
   next();
-};
+}
+)

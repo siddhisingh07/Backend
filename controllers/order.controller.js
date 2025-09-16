@@ -65,7 +65,7 @@ const  adminOrders  = asyncHandler(async(req,res)=>{
     if (!allOrders) {
         throw new ErrorHandler(400, "Failed to fetch all user orders")
     }
-    res.status(200).json(new ApiResponse(200, allOrders))
+    res.status(200).json(new ApiResponse(200, allOrders, "Orders data fetched Successfully!!"))
 }) 
 
 export { createOrder, userOrders, adminOrders };
