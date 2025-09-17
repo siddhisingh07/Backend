@@ -28,9 +28,25 @@ const register = asyncHandler(async (req, res) => {
     password: hashedPass,
     userType: userType || 'user',
   });
+
+  
+  let token = jwt.sign({ _id: user._id }, process.env.SECRET_KEY, {
+    expiresIn: '6h',
+  });
+
+  res.cookie('token', token, { httpOnly: true, secure: false });
+
+ let userData = {
+    id: user._id,
+    name: user.name,
+    email: user.email,
+    userType: user.userType,
+  };
+  let data = { userData, token };
+
   return res
     .status(200)
-    .json(new ApiResponse(200, user, 'User created successfully'));
+    .json(new ApiResponse(200, data, 'User created successfully'));
 });
 
 const login = async (req, res) => {
