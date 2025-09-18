@@ -4,8 +4,9 @@ import { authenticate } from '../middlewares/Authenticate.js';
 
 const router = Router();
 
-router.post("/add-cart", authenticate, addCart)
-router.get("/", authenticate, cart_list)
+router.post("/add-cart", authenticate, addCart);
+
+router.get("/", authenticate, cart_list);
 
 router.put("/:productId", authenticate, quantityUpdate )
 

@@ -52,7 +52,7 @@ const register = asyncHandler(async (req, res) => {
 const login = async (req, res) => {
   let errors = validationResult(req);
   if (!errors.isEmpty()) {
-    throw new ErrorHandler(400, 'Valiadation Error', [errors.array()]);
+    throw new ErrorHandler(400, 'Validation Error', [errors.array()]);
   }
 
   let { email, password } = req.body;
