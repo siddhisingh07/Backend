@@ -34,7 +34,7 @@ const register = asyncHandler(async (req, res) => {
     expiresIn: '6h',
   });
 
-  res.cookie('token', token, { httpOnly: true, secure: false });
+  res.cookie('token', token, { httpOnly: true, secure: true });
 
  let userData = {
     id: user._id,
@@ -71,7 +71,7 @@ const login = async (req, res) => {
     expiresIn: '6h',
   });
 
-  res.cookie('token', token, { httpOnly: true, secure: false });
+  res.cookie('token', token, { httpOnly: true, secure: true });
 
   let userData = {
     id: user._id,
