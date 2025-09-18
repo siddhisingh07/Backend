@@ -79,8 +79,14 @@ const updateProductDetails = asyncHandler(async (req, res) => {
 });
 
 const logout = asyncHandler(async (req, res) => {
-  res.clearCookie('token');
-  res.json(200, null, 'Logged out');
+  res.clearCookie('token', {
+    httpOnly: true,
+    secure: true,
+    sameSite: 'None',
+  });
+
+  res.json({ message: 'Logged out' });
 });
+
 
 export { addProduct, productList, removeProduct, updateProductDetails, logout };

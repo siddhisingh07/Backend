@@ -192,9 +192,15 @@ const me = asyncHandler(async (req, res) => {
 });
 
 const logout = asyncHandler(async (req, res) => {
-  res.clearCookie('token');
+  res.clearCookie('token', {
+    httpOnly: true,
+    secure: true,
+    sameSite: 'None',
+  });
+
   res.json({ message: 'Logged out' });
 });
+
 
 const search = asyncHandler(async (req, res) => {
   const query = req.query.q || '';
